@@ -1,10 +1,9 @@
 `timescale 1ns/1ns
-module SevenSegment (     
-    input wire [3:0]in,     
+module SSD (     
+	input wire [3:0]in,     
 	output reg [6:0]out 
 );
-always @(in)
-	begin
+	always @(in) begin
 		case(in)
 			4'h0: out = 7'h40;
 			4'h1: out = 7'h79;

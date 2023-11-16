@@ -1,9 +1,10 @@
 `timescale 1ns/1ns
+
 module One_Pulser (
     input wire clk,       // Clock input
-    input wire reset,     // Reset input
+    input wire rst,     // Restart input
     input wire clkPB,     // Clock PB input
-    output reg clkEn     // Clock enable output  
+    output reg Clk_EN     // Clock enable output  
 );
 
 // Define state encoding
@@ -13,9 +14,9 @@ parameter StateC = 3'b010;
 reg [2:0] ps;
 reg [2:0] ns;
 
-always@(posedge clk, posedge reset)
+always@(posedge clk, posedge rst)
 begin
-	if(reset)
+	if(rst)
 		ps <= StateA;
 	else
 		ps <= ns;
