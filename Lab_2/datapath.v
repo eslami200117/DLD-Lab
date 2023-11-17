@@ -6,11 +6,12 @@ module datapath (
   input ClkPB,
   input SerIn,
   input sh_en, sh_en_D, ldcntD,
-  output p0, p1, p2, p3,
+  input cnt_1, cnt_2, cnt_D,
+  output reg p0, p1, p2, p3,
   output reg Clk_EN,
   output reg [1:0] port_num,
-  output [6:0] pDcnt,
-  output co1, co2, co_D
+  output reg [6:0] pDcnt,
+  output reg co1, co2, co_D
 );
 
  
@@ -49,6 +50,8 @@ UpCounter Data_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b1}),
+  .enable(cnt_2),
+  .up_down({1'b0}),
   .data_in(Ld_data),
   .co(co_D),
   .Coun_out(Coun_out)
@@ -58,6 +61,8 @@ UpCounter Data_Counter2(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
+  .enable(cnt_D),
+  .up_down({1'b1}),
   .data_in(Ld_data),
   .co(c2),
   .Coun_out(Coun_out)
@@ -68,6 +73,8 @@ UpCounter #(2) Port_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
+  .enable(cnt_1),
+  .up_down({1'b1}),
   .data_in(Ld_data),
   .co(co1),
   .Coun_out(Coun_out)
