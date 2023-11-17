@@ -7,7 +7,7 @@ module UpDownCounter #(parameter WIDTH = 4) (
     input wire enable,                   // Enable input
     input wire up_down,                  // Up/Down control input
     input wire [WIDTH-1:0] data_in,      // Data input for loading
-    output reg co                        // cout
+    output reg co,                        // cout
     output reg [WIDTH-1:0] count_out     // Output count
 );
 
@@ -20,10 +20,13 @@ module UpDownCounter #(parameter WIDTH = 4) (
             end else if (enable) begin
                 if (up_down) begin
                     // Up-counter logic
-                    count_out <= count_out + 1;
+                    {co, count_out} <= count_out + 1;
                 end else begin
                     // Down-counter logic
                     count_out <= count_out - 1;
+                    if(count_out == 0) begin
+                        co <= 1'b1;
+                    end
                 end
             end
         end

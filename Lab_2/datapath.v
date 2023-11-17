@@ -1,16 +1,16 @@
 `timescale 1ns/1ns
 
 module datapath (
-  input clk;
-  input rst;
-  input ClkPB;
-  input SerIn;
-  input sh_en, sh_en_D, ldcntD;
-  output p0, p1, p2, p3;
-  output reg Clk_EN;
-  output reg [1:0] port_num;
-  output [6:0] pDcnt;
-  output co1, co2, co_D;
+  input clk,
+  input rst,
+  input ClkPB,
+  input SerIn,
+  input sh_en, sh_en_D, ldcntD,
+  output p0, p1, p2, p3,
+  output reg Clk_EN,
+  output reg [1:0] port_num,
+  output [6:0] pDcnt,
+  output co1, co2, co_D
 );
 
  
@@ -24,7 +24,7 @@ One_Pulser op(
   .clk(clk),
   .rst(rst),
   .clkPB(clkPB),
-  .Clk_EN(Clk_EN),
+  .Clk_EN(Clk_EN)
 );
 
 ShiftRegister Data_Register(
@@ -36,7 +36,7 @@ ShiftRegister Data_Register(
   .out(Ld_data)
 );
 
-ShiftRegister #(2) Data_Register(
+ShiftRegister #(2) Data_Register2(
   .clk(clk),
   .rst(rst),
   .Clk_EN(Clk_EN),
@@ -54,7 +54,7 @@ UpCounter Data_Counter(
   .Coun_out(Coun_out)
 );
 
-UpCounter Data_Counter(
+UpCounter Data_Counter2(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
@@ -86,7 +86,6 @@ Demux demux(
   .p1(p1),
   .p2(p2),
   .p3(p3)
-)
-
+);
 
 endmodule

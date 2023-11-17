@@ -7,7 +7,7 @@ module top(
   input SerIn,
   output Done,
   output serOutvalid,
-  output p0, p1, p2, p3;
+  output p0, p1, p2, p3,
   output reg port_num,
   output [6:0] pDcnt  
 );
@@ -25,7 +25,7 @@ module top(
     .p0(p0),
     .p1(p1),
     .p2(p2),
-    .p3(p3)
+    .p3(p3),
     .Clk_EN(Clk_EN),
     .port_num(port_num), 
     .pDcnt(pDcnt),
@@ -43,6 +43,6 @@ module top(
     .co_D(co_D),
     .clkEn(clkEn),
     .cnt_1()
-
-  )
+  );
+  
 endmodule
