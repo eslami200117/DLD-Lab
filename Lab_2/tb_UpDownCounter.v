@@ -58,7 +58,7 @@ module tb_UpDownCounter;
         // Add more test cases as needed
 
         // End simulation
-        #100 $finish;
+        #100 $stop;
     end
 
 endmodule
