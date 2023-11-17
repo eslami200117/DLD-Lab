@@ -1,5 +1,5 @@
 `timescale 1ns/1ns
-module ThreeStateStateMachine_tb;
+module tb_One_Pulser;
 
     reg clk;
     reg reset;
@@ -7,7 +7,7 @@ module ThreeStateStateMachine_tb;
 
     wire clkEn;
 
-    ThreeStateStateMachine uut (
+    One_Pulser uut (
         .clk(clk),
         .reset(reset),
         .clkPB(clkPB),
