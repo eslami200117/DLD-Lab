@@ -8,11 +8,11 @@ module top(
   output reg Done,
   output reg serOutvalid,
   output reg p0, p1, p2, p3,
-  output reg port_num,
+  output reg [1:0] port_num,
   output reg [6:0] pDcnt  
 );
 
-  wire sh_en, sh_en_d, ldcntD;
+  wire sh_en, sh_en_D, ldcntD;
   wire co1, co2, co_D;
   wire cnt_1, cnt_2, cnt_D;
 
@@ -22,7 +22,7 @@ module top(
     .ClkPB(ClkPB),
     .SerIn(SerIn),
     .sh_en(sh_en),
-    .sh_en_d(sh_en_d),
+    .sh_en_D(sh_en_D),
     .ldcntD(ldcntD),
     .cnt_1(cnt_1), 
     .cnt_2(cnt_2), 
@@ -52,7 +52,7 @@ module top(
     .cnt_D(cnt_D), 
     .ld_cnt_D(ldcntD), 
     .sh_en(sh_en), 
-    .sh_en_D(sh_en_d), 
+    .sh_en_D(sh_en_D), 
     .ser_out_valid(serOutvalid), 
     .done(Done)
   );

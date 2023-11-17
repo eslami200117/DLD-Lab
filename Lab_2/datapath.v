@@ -46,7 +46,7 @@ ShiftRegister #(2) Data_Register2(
   .out(port_num)
 );
 
-UpCounter Data_Counter(
+UpDownCounter Data_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b1}),
@@ -57,7 +57,7 @@ UpCounter Data_Counter(
   .Coun_out(Coun_out)
 );
 
-UpCounter Data_Counter2(
+UpDownCounter Data_Counter2(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
@@ -69,7 +69,7 @@ UpCounter Data_Counter2(
 );
 
 
-UpCounter #(2) Port_Counter(
+UpDownCounter #(2) Port_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),

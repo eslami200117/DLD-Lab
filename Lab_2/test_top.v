@@ -40,7 +40,7 @@ module tb_top;
 
     #50 rst = 0;
     #10 ClkPB = 1;
-    30 ClkPB = 0;
+    #30 ClkPB = 0;
 
     #10 SerIn = 1;
     #10 SerIn = 1;
