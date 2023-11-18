@@ -7,17 +7,17 @@ module datapath (
   input SerIn,
   input sh_en, sh_en_D, ldcntD,
   input cnt_1, cnt_2, cnt_D,
-  output reg p0, p1, p2, p3,
-  output reg Clk_EN,
-  output reg [1:0] port_num,
-  output reg [6:0] pDcnt,
-  output reg co1, co2, co_D
+  output p0, p1, p2, p3,
+  output Clk_EN,
+  output [1:0] port_num,
+  output [6:0] pDcnt,
+  output co1, co2, co_D
 );
 
  
 
 wire [3:0] Ld_data;
-wire [3:0] Coun_out;
+wire [3:0] count_out;
 
 
 
@@ -54,7 +54,7 @@ UpDownCounter Data_Counter(
   .up_down({1'b0}),
   .data_in(Ld_data),
   .co(co_D),
-  .Coun_out(Coun_out)
+  .count_out(count_out)
 );
 
 UpDownCounter Data_Counter2(
@@ -65,7 +65,7 @@ UpDownCounter Data_Counter2(
   .up_down({1'b1}),
   .data_in(Ld_data),
   .co(c2),
-  .Coun_out(Coun_out)
+  .count_out(count_out)
 );
 
 
@@ -75,14 +75,14 @@ UpDownCounter #(2) Port_Counter(
   .load({1'b0}),
   .enable(cnt_1),
   .up_down({1'b1}),
-  .data_in(Ld_data),
+  .data_in({2'b00}),
   .co(co1),
-  .Coun_out(Coun_out)
+  .count_out(count_out)
 );
 
 
 SSD ssd(
-  .in(Coun_out),
+  .in(count_out),
   .out(pDcnt)
 );
 

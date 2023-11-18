@@ -11,7 +11,7 @@ module tb_top;
   wire serOutvalid;
   wire p0, p1, p2, p3;
   wire [6:0] pDcnt;
-  wire port_num;
+  wire [1:0] port_num;
 
   top uut (
     .clk(clk),

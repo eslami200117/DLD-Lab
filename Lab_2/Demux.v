@@ -11,10 +11,10 @@ module Demux (
 
 	always @(SerIn or port_num) begin
 		case (port_num)
-			2'b00 : p0 = SerIn;
-			2'b01 : p1 = SerIn;
-			2'b10 : p2 = SerIn;
-			2'b11 : p3 = SerIn;
+			2'b00 : p0 <= SerIn;
+			2'b01 : p1 <= SerIn;
+			2'b10 : p2 <= SerIn;
+			2'b11 : p3 <= SerIn;
 		endcase
 	end
 

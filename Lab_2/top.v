@@ -5,11 +5,11 @@ module top(
   input rst,
   input ClkPB,
   input SerIn,
-  output reg Done,
-  output reg serOutvalid,
-  output reg p0, p1, p2, p3,
-  output reg [1:0] port_num,
-  output reg [6:0] pDcnt  
+  output Done,
+  output serOutvalid,
+  output p0, p1, p2, p3,
+  output [1:0] port_num,
+  output [6:0] pDcnt  
 );
 
   wire sh_en, sh_en_D, ldcntD;
