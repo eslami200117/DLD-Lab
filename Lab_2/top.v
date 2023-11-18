@@ -8,6 +8,7 @@ module top(
   output Done,
   output serOutvalid,
   output p0, p1, p2, p3,
+  output Clk_EN,
   output [1:0] port_num,
   output [6:0] pDcnt  
 );
@@ -46,7 +47,7 @@ module top(
     .co1(co1),
     .co2(co2),
     .co_D(co_D),
-    .clkEn(clkEn),
+    .clkEn(Clk_EN),
     .cnt_1(cnt_1), 
     .cnt_2(cnt_2), 
     .cnt_D(cnt_D), 

@@ -10,6 +10,7 @@ module tb_top;
   wire Done;
   wire serOutvalid;
   wire p0, p1, p2, p3;
+  wire Clk_EN;
   wire [6:0] pDcnt;
   wire [1:0] port_num;
 
@@ -25,6 +26,7 @@ module tb_top;
     .p2(p2),
     .p3(p3),
     .port_num(port_num),
+    .Clk_EN(Clk_EN),
     .pDcnt(pDcnt)
   );
 

@@ -3,7 +3,7 @@
 module One_Pulser (
     input wire clk,       // Clock input
     input wire rst,     // Restart input
-    input wire clkPB,     // Clock PB input
+    input wire ClkPB,     // Clock PB input
     output reg Clk_EN     // Clock enable output  
 );
 
@@ -32,12 +32,12 @@ begin
 end
 
 
-always @(ps,clkPB) begin
+always @(ps,ClkPB) begin
 
      begin
         case (ps)
             StateA: begin
-                if (~clkPB) begin
+                if (~ClkPB) begin
                     ns <= StateA; // Stay in StateA
                 end else begin
                     ns <= StateB; // Transition to StateB
@@ -47,7 +47,7 @@ always @(ps,clkPB) begin
                 ns <= StateC;    // Unconditionally transition to StateC
             end
             StateC: begin
-                if (clkPB) begin
+                if (ClkPB) begin
                     ns <= StateC; // Stay in StateC
                 end else begin
                     ns <= StateA; // Transition to StateA

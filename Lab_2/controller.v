@@ -16,7 +16,7 @@ always@(posedge clk, posedge rst)
   begin
     if(rst)
       ps <= IDLE;
-    else if(clkEn)
+    else 
       ps <= ns;
   end
 
@@ -32,7 +32,7 @@ always@(ps, SerIn, co1, co2, co_D)
   end
 
   always@(ps) begin
-    {cnt_1, cnt_2, cnt_D, ld_cnt_D, sh_en, sh_en_D, ser_out_valid, done} = 8'd0;
+    {cnt_1, cnt_2, cnt_D, ld_cnt_D, sh_en, sh_en_D, ser_out_valid, done} = 8'b0;
     case(ps)
       PORT_NUM:
         begin

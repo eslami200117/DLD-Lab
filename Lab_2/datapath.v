@@ -24,14 +24,14 @@ wire [3:0] count_out;
 One_Pulser op(
   .clk(clk),
   .rst(rst),
-  .clkPB(clkPB),
+  .ClkPB(ClkPB),
   .Clk_EN(Clk_EN)
 );
 
 ShiftRegister Data_Register(
   .clk(clk),
   .rst(rst),
-  .Clk_EN(Clk_EN),
+  .Clk_EN(sh_en_D),
   .shift_direction(2'b10),
   .in(SerIn),
   .out(Ld_data)
@@ -40,7 +40,7 @@ ShiftRegister Data_Register(
 ShiftRegister #(2) Data_Register2(
   .clk(clk),
   .rst(rst),
-  .Clk_EN(Clk_EN),
+  .Clk_EN(sh_en),
   .shift_direction({2'b10}),
   .in(SerIn),
   .out(port_num)
@@ -50,26 +50,26 @@ UpDownCounter Data_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b1}),
-  .enable(cnt_2),
+  .enable(cnt_D),
   .up_down({1'b0}),
   .data_in(Ld_data),
   .co(co_D),
   .count_out(count_out)
 );
 
-UpDownCounter Data_Counter2(
+UpDownCounter #(2) Data_Counter2(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
-  .enable(cnt_D),
+  .enable(cnt_2),
   .up_down({1'b1}),
   .data_in(Ld_data),
-  .co(c2),
+  .co(co2),
   .count_out(count_out)
 );
 
 
-UpDownCounter #(2) Port_Counter(
+UpDownCounter #(1) Port_Counter(
   .clk(clk),
   .rst(rst),
   .load({1'b0}),
