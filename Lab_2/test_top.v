@@ -38,13 +38,13 @@ module tb_top;
   initial begin
     rst = 1;
     ClkPB = 0;
-    SerIn = 0;
+    SerIn = 1;
 
     #50 rst = 0;
     #10 ClkPB = 1;
-    #30 ClkPB = 0;
+    #10 ClkPB = 0;
 
-    #10 SerIn = 1;
+    #5 SerIn = 0;
     #10 SerIn = 1;
     #10 SerIn = 0;
     #10 SerIn = 1;

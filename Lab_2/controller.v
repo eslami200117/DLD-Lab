@@ -12,12 +12,16 @@ parameter DONE = 3'd4;
 reg [2: 0] ps;
 reg [2: 0] ns;
 
+reg flag = 0'b0;
+
 always@(posedge clk, posedge rst)
   begin
     if(rst)
       ps <= IDLE;
-    else 
+    else if(flag && ~clkEn)
       ps <= ns;
+    if(clkEn)
+      flag = 1'b1; 
   end
 
 always@(ps, SerIn, co1, co2, co_D)

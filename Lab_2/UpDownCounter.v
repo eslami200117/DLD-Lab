@@ -14,16 +14,15 @@ module UpDownCounter #(parameter WIDTH = 4) (
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             {co,count_out} <= {(WIDTH+1){1'b0}};
-        end else if (load) begin
-            count_out <= data_in;
         end else if (enable) begin
             if (up_down) begin
-                {co, count_out} <= count_out + 1;
+                {co,count_out} <= count_out + 1;
             end else begin
                 count_out <= count_out - 1;
-                co <= ~|count_out;
             end
         end
     end
 
+    assign count_out = load? data_in: count_out;
+    assign co = up_down? &count_out: ~|count_out;
 endmodule
