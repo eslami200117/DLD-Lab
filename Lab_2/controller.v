@@ -21,7 +21,7 @@ reg [2: 0] ns;
 
 reg flag = 0'b0;
 
-always@(posedge clk, posedge rst)
+always@(posedge clk or posedge rst)
   begin
     if(rst)
       ps <= IDLE;
@@ -34,16 +34,16 @@ always@(posedge clk, posedge rst)
 always@(ps, SerIn, co1, co2, co_D)
   begin
     case(ps)
-      IDLE: ns = SerIn? IDLE: PORT_NUM;
-      PORT_NUM: ns = co1? DATA_NUM: PORT_NUM;
-      DATA_NUM: ns = co2? TRANCE: DATA_NUM;
-      TRANCE: ns = co_D? DONE: TRANCE;
-      DONE: ns = SerIn? IDLE:PORT_NUM;
+      IDLE: ns <= SerIn? IDLE: PORT_NUM;
+      PORT_NUM: ns <= co1? DATA_NUM: PORT_NUM;
+      DATA_NUM: ns <= co2? TRANCE: DATA_NUM;
+      TRANCE: ns <= co_D? DONE: TRANCE;
+      DONE: ns <= SerIn? IDLE:PORT_NUM;
       endcase
   end
 
   always@(ps) begin
-    {cnt_1, cnt_2, cnt_D, ld_cnt_D, sh_en, sh_en_D, ser_out_valid, done} = 8'b0;
+    {cnt_1, cnt_2, cnt_D, ld_cnt_D, sh_en, sh_en_D, ser_out_valid, done} <= 8'b0;
     case(ps)
       PORT_NUM:
         begin

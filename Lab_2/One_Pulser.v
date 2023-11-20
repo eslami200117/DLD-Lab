@@ -25,9 +25,9 @@ end
 always@(ps)
 begin
 		case(ps)
-			StateA: Clk_EN = 0;
-			StateB: Clk_EN = 1'b1;
-			StateC:	Clk_EN=0;
+			StateA: Clk_EN <= 0;
+			StateB: Clk_EN <= 1'b1;
+			StateC:	Clk_EN <= 0;
 	endcase
 end
 
