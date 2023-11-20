@@ -1,12 +1,12 @@
 `timescale 1ns/1ns
 
 module datapath (
-  input wire clk,
-  input wire rst,
-  input wire ClkPB,
-  input wire SerIn,
-  input wire sh_en, sh_en_D, ldcntD,
-  input wire cnt_1, cnt_2, cnt_D,
+  input clk,
+  input rst,
+  input ClkPB,
+  input SerIn,
+  input sh_en, sh_en_D, ldcntD,
+  input cnt_1, cnt_2, cnt_D,
   output p0, p1, p2, p3,
   output Clk_EN,
   output [1:0] port_num,
@@ -18,6 +18,8 @@ module datapath (
 
 wire [3:0] Ld_data;
 wire [3:0] count_out;
+wire [3:0] count_out2;
+
 
 
 
@@ -29,7 +31,8 @@ One_Pulser op(
 );
 
 ShiftRegister Data_Register(
-  .clk(Clk_EN),
+  .clk(clk),
+  .Clk_EN(Clk_EN),
   .rst(rst),
   .en(sh_en_D),
   .in(SerIn),
@@ -37,7 +40,8 @@ ShiftRegister Data_Register(
 );
 
 ShiftRegister #(2) Data_Register2(
-  .clk(Clk_EN),
+  .clk(clk),
+  .Clk_EN(Clk_EN),
   .rst(rst),
   .en(sh_en),
   .in(SerIn),
@@ -45,7 +49,8 @@ ShiftRegister #(2) Data_Register2(
 );
 
 UpDownCounter Data_Counter(
-  .clk(Clk_EN),
+  .clk(clk),
+  .Clk_EN(Clk_EN),
   .rst(rst),
   .load(ldcntD),
   .enable(cnt_D),
@@ -56,26 +61,28 @@ UpDownCounter Data_Counter(
 );
 
 UpDownCounter #(2) Data_Counter2(
-  .clk(Clk_EN),
+  .clk(clk),
+  .Clk_EN(Clk_EN),
   .rst(rst),
   .load({1'b0}),
   .enable(cnt_2),
   .up_down({1'b1}),
   .data_in(Ld_data),
   .co(co2),
-  .count_out(count_out)
+  .count_out(count_out1)
 );
 
 
 UpDownCounter #(1) Port_Counter(
-  .clk(Clk_EN),
+  .clk(clk),
+  .Clk_EN(Clk_EN),
   .rst(rst),
   .load({1'b0}),
   .enable(cnt_1),
   .up_down({1'b1}),
   .data_in({2'b00}),
   .co(co1),
-  .count_out(count_out)
+  .count_out(count_out2)
 );
 
 

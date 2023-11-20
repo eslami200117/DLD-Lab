@@ -1,5 +1,5 @@
 `timescale 1ns/1ns
-module controller(input clk, rst, SerIn, co1, co2, co_D, 
+module controller(input clk, Clk_EN, rst, SerIn, co1, co2, co_D, 
                   output reg cnt_1, 
                   output reg cnt_2, 
                   output reg cnt_D, 
@@ -23,10 +23,10 @@ reg flag = 0'b0;
 
 always@(posedge clk or posedge rst)
   begin
-    if(rst)
-      ps <= IDLE;
-    else
-      ps <= ns;
+      if(rst)
+        ps <= IDLE;
+      else if (Clk_EN)
+        ps <= ns;
   end
 
 always@(ps, SerIn, co1, co2, co_D)
@@ -46,17 +46,17 @@ always@(ps, SerIn, co1, co2, co_D)
       PORT_NUM:
         begin
           sh_en <= 1'b1;
-          cnt_1 <= 1'b1;
+          cnt_1 <= ~co1;
         end
       DATA_NUM:
         begin
           sh_en_D <= 1'b1;
-          cnt_2 <= 1'b1;
+          cnt_2 <= ~co2;
           ld_cnt_D <= 1'b1;
         end 
       TRANCE:
       begin
-        cnt_D <= 1'b1;
+        cnt_D <= ~co_D;
         ser_out_valid <= 1'b1;
       end
       DONE:

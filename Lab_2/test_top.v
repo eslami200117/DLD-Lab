@@ -13,15 +13,7 @@ module tb_top;
   wire Clk_EN;
   wire [6:0] pDcnt;
   wire [1:0] port_num;
-  wire [3:0] out;
-  reg en;
-  wire sh_en, sh_en_D, ldcntD;
-  wire co1, co2, co_D;
-  wire cnt_1, cnt_2, cnt_D;
-
-
-wire [3:0] Ld_data;
-wire [3:0] count_out;
+ 
 
   top uut (
     .clk(clk),
@@ -39,6 +31,46 @@ wire [3:0] count_out;
     .pDcnt(pDcnt)
   );
 
+
+
+
+  initial begin
+    clk = 0;
+    forever #5 clk = ~clk;
+  end
+
+
+  initial begin
+    ClkPB = 1;
+    forever #10 ClkPB = ~ClkPB;
+  end
+
+
+  initial begin
+    rst = 1;
+    ClkPB = 0;
+    SerIn = 1;
+
+    #50 rst = 0;
+    #40 SerIn = 0;
+    #40 SerIn = 1;
+    #40 SerIn = 0;
+    #40 SerIn = 1;
+    #40 SerIn = 0;
+    #40 SerIn = 0;
+    #40 SerIn = 1;
+    #40 SerIn = 1;
+    #40 SerIn = 0;
+    #40 SerIn = 0;
+    #40 SerIn = 1;
+    #40 SerIn = 0;
+    #40 SerIn = 0;
+    #40 SerIn = 1;
+
+    #200 $stop;
+  end
+
+endmodule
 
 
 //   ShiftRegister uut2 (
@@ -180,46 +212,3 @@ wire [3:0] count_out;
   //   .ser_out_valid(serOutvalid), 
   //   .done(Done)
   // );
-
-  initial begin
-    clk = 0;
-    forever #5 clk = ~clk;
-  end
-
-
-  initial begin
-    ClkPB = 1;
-    forever #5 ClkPB = ~ClkPB;
-  end
-
-  initial begin
-    en = 0;
-    #105 en = 1;
-    #40 en = 0;
-  end
-
-  initial begin
-    rst = 1;
-    ClkPB = 0;
-    SerIn = 1;
-
-    #50 rst = 0;
-    #5 SerIn = 0;
-    #10 SerIn = 1;
-    #10 SerIn = 0;
-    #10 SerIn = 1;
-    #10 SerIn = 0;
-    #10 SerIn = 0;
-    #10 SerIn = 1;
-    #10 SerIn = 1;
-    #10 SerIn = 0;
-    #10 SerIn = 0;
-    #10 SerIn = 1;
-    #10 SerIn = 0;
-    #10 SerIn = 0;
-    #10 SerIn = 1;
-
-    #200 $stop;
-  end
-
-endmodule

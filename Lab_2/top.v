@@ -1,10 +1,10 @@
 `timescale 1ns/1ns
 
 module top(
-  input wire clk,
-  input wire rst,
-  input wire ClkPB,
-  input wire SerIn,
+  input  clk,
+  input  rst,
+  input  ClkPB,
+  input  SerIn,
   output Done,
   output serOutvalid,
   output p0, p1, p2, p3,
@@ -39,6 +39,28 @@ module top(
     .co2(co2),
     .co_D(co_D)
   );
+
+
+  controller c(
+    .clk(clk),
+    .Clk_EN(Clk_EN),
+    .rst(rst),
+    .SerIn(SerIn),
+    .co1(co1),
+    .co2(co2),
+    .co_D(co_D),
+    .cnt_1(cnt_1), 
+    .cnt_2(cnt_2), 
+    .cnt_D(cnt_D), 
+    .ld_cnt_D(ldcntD), 
+    .sh_en(sh_en), 
+    .sh_en_D(sh_en_D), 
+    .ser_out_valid(serOutvalid), 
+    .done(Done)
+  );
+  
+endmodule
+
 
 // wire [3:0] Ld_data;
 // wire [3:0] count_out;
@@ -116,22 +138,3 @@ module top(
 //   .p2(p2),
 //   .p3(p3)
 // );
-
-  controller c(
-    .clk(Clk_EN),
-    .rst(rst),
-    .SerIn(SerIn),
-    .co1(co1),
-    .co2(co2),
-    .co_D(co_D),
-    .cnt_1(cnt_1), 
-    .cnt_2(cnt_2), 
-    .cnt_D(cnt_D), 
-    .ld_cnt_D(ldcntD), 
-    .sh_en(sh_en), 
-    .sh_en_D(sh_en_D), 
-    .ser_out_valid(serOutvalid), 
-    .done(Done)
-  );
-  
-endmodule
