@@ -1,12 +1,12 @@
 `timescale 1ns/1ns
 
 module datapath (
-  input clk,
-  input rst,
-  input ClkPB,
-  input SerIn,
-  input sh_en, sh_en_D, ldcntD,
-  input cnt_1, cnt_2, cnt_D,
+  input wire clk,
+  input wire rst,
+  input wire ClkPB,
+  input wire SerIn,
+  input wire sh_en, sh_en_D, ldcntD,
+  input wire cnt_1, cnt_2, cnt_D,
   output p0, p1, p2, p3,
   output Clk_EN,
   output [1:0] port_num,
@@ -31,7 +31,7 @@ One_Pulser op(
 ShiftRegister Data_Register(
   .clk(clk),
   .rst(rst),
-  .Clk_EN(sh_en_D),
+  .en(sh_en_D),
   .in(SerIn),
   .out(Ld_data)
 );
@@ -39,7 +39,7 @@ ShiftRegister Data_Register(
 ShiftRegister #(2) Data_Register2(
   .clk(clk),
   .rst(rst),
-  .Clk_EN(sh_en),
+  .en(sh_en),
   .in(SerIn),
   .out(port_num)
 );

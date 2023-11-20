@@ -1,10 +1,10 @@
 `timescale 1ns/1ns
 
 module top(
-  input clk,
-  input rst,
-  input ClkPB,
-  input SerIn,
+  input wire clk,
+  input wire rst,
+  input wire ClkPB,
+  input wire SerIn,
   output Done,
   output serOutvalid,
   output p0, p1, p2, p3,

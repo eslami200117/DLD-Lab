@@ -35,7 +35,7 @@ module tb_ShiftRegister;
         Clk_EN = 0;
         in = 1'b1;
 
-        #10 rst = 0;
+        #15 rst = 0;
 
         #10 Clk_EN = 1;
         #10 in = 1'b0;

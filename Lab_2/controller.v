@@ -1,7 +1,14 @@
 `timescale 1ns/1ns
 module controller(input clk, rst, SerIn, co1, co2, co_D, clkEn, 
-                  output reg cnt_1, cnt_2, cnt_D, ld_cnt_D, sh_en, 
-                  output reg sh_en_D, ser_out_valid, done);
+                  output reg cnt_1, 
+                  output reg cnt_2, 
+                  output reg cnt_D, 
+                  output reg ld_cnt_D, 
+                  output reg sh_en, 
+                  output reg sh_en_D, 
+                  output reg ser_out_valid, 
+                  output reg done
+                  );
 
 parameter IDLE = 3'd0;
 parameter PORT_NUM = 3'd1;
