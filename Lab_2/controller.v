@@ -1,5 +1,5 @@
 `timescale 1ns/1ns
-module controller(input clk, rst, SerIn, co1, co2, co_D, clkEn, 
+module controller(input clk, rst, SerIn, co1, co2, co_D, 
                   output reg cnt_1, 
                   output reg cnt_2, 
                   output reg cnt_D, 
@@ -25,10 +25,8 @@ always@(posedge clk or posedge rst)
   begin
     if(rst)
       ps <= IDLE;
-    else if(flag && ~clkEn)
+    else
       ps <= ns;
-    if(clkEn)
-      flag = 1'b1; 
   end
 
 always@(ps, SerIn, co1, co2, co_D)

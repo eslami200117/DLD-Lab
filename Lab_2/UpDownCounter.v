@@ -24,5 +24,5 @@ module UpDownCounter #(parameter WIDTH = 4) (
     end
 
     assign count_out = load? data_in: count_out;
-    assign co = up_down? &count_out: ~|count_out;
+    // assign co = up_down? &count_out: ~|count_out;
 endmodule

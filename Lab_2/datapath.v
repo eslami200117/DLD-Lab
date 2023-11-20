@@ -29,7 +29,7 @@ One_Pulser op(
 );
 
 ShiftRegister Data_Register(
-  .clk(clk),
+  .clk(Clk_EN),
   .rst(rst),
   .en(sh_en_D),
   .in(SerIn),
@@ -37,7 +37,7 @@ ShiftRegister Data_Register(
 );
 
 ShiftRegister #(2) Data_Register2(
-  .clk(clk),
+  .clk(Clk_EN),
   .rst(rst),
   .en(sh_en),
   .in(SerIn),
@@ -45,7 +45,7 @@ ShiftRegister #(2) Data_Register2(
 );
 
 UpDownCounter Data_Counter(
-  .clk(clk),
+  .clk(Clk_EN),
   .rst(rst),
   .load(ldcntD),
   .enable(cnt_D),
@@ -56,7 +56,7 @@ UpDownCounter Data_Counter(
 );
 
 UpDownCounter #(2) Data_Counter2(
-  .clk(clk),
+  .clk(Clk_EN),
   .rst(rst),
   .load({1'b0}),
   .enable(cnt_2),
@@ -68,7 +68,7 @@ UpDownCounter #(2) Data_Counter2(
 
 
 UpDownCounter #(1) Port_Counter(
-  .clk(clk),
+  .clk(Clk_EN),
   .rst(rst),
   .load({1'b0}),
   .enable(cnt_1),
