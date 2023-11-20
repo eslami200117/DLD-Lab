@@ -32,7 +32,6 @@ ShiftRegister Data_Register(
   .clk(clk),
   .rst(rst),
   .Clk_EN(sh_en_D),
-  .shift_direction(2'b01),
   .in(SerIn),
   .out(Ld_data)
 );
@@ -41,7 +40,6 @@ ShiftRegister #(2) Data_Register2(
   .clk(clk),
   .rst(rst),
   .Clk_EN(sh_en),
-  .shift_direction({2'b01}),
   .in(SerIn),
   .out(port_num)
 );
